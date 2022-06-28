@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset = "UTF-8">
+    <meta name = "description" content = "Interactive animations of HEMT transistors by Adam Paľo 2022 FEI STU">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <title>HEMT - Štruktúra</title>
+
+    <link rel="stylesheet" href="../bootstrap-5.1.3-dist/css/bootstrap.min.css">
+    <link href="../CSS/navbar.css" rel="stylesheet">
+    <link href="../CSS/style.css" rel="stylesheet">
+    <link href="../CSS/sidebars.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900" rel="stylesheet" type="text/css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon_package/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_package/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_package/favicon-16x16.png">
+    <link rel="manifest" href="/favicon_package/site.webmanifest">
+    <link rel="mask-icon" href="/favicon_package/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+    <div id="backdrop" class="align-content-center">
+        <div class="modal modal-sheet d-block" tabindex="-1" role="dialog" id="modal">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content rounded-6 shadow">
+                    <div class="modal-header border-bottom-0">
+                        <h2 class="modal-title px-2">Legenda</h2>
+                        <button type="button" class="btn-close" onclick="hideModal()" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body py-0">
+                        <h5 class="p-2">
+                            E<sub>C</sub> <small class="text-muted"> - Dolná hranica vodivostného pásma</small>
+                        </h5>
+                        <h5 class="p-2">
+                            E<sub>F</sub> <small class="text-muted"> - Fermiho hladina</small>
+                        </h5>
+                        <h5 class="p-2">
+                            &#966;<sub>B0</sub> <small class="text-muted"> - Výška potenciálovej hladiny</small>
+                        </h5>
+                        <h5 class="p-2">
+                            E<sub>g1</sub> <small class="text-muted"> - Polovodič so šírkou zakázaného pásma E<sub>g1</sub></small>
+                        </h5>
+                        <h5 class="p-2">
+                            E<sub>g2</sub> <small class="text-muted"> - Polovodič so šírkou zakázaného pásma E<sub>g2</sub></small>
+                        </h5>
+                        <div class="d-flex p-1">
+                            <h5 class="m-auto"> E<sub>g1</sub> > E<sub>g2</sub></h5>
+                        </div>
+                    </div>
+                    <div class="modal-footer flex-column border-top-0">
+                        <button type="button" class="btn btn-sm btn-outline-primary w-100 mx-0 mb-2" onclick="hideModal()">Mám to!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="backdrop2" class="align-content-center" style="display: none">
+        <div class="modal modal-sheet d-block" tabindex="-1" role="dialog" id="modal2">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content rounded-6 shadow">
+                    <div class="modal-header border-bottom-0">
+                        <h2 class="modal-title px-2">Legenda</h2>
+                        <button type="button" class="btn-close" onclick="hideModal()" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body py-0">
+                        <div class="modal-body py-0">
+                            <h5 class="p-2">
+                                QV <small class="text-muted"> - Kvantová jama</small>
+                            </h5>
+                            <h5 class="p-2">
+                                2DEG <small class="text-muted"> - Two dimensional electron gas - Dvojrozmerný elektrónový plyn</small>
+                            </h5>
+                            <h5 class="p-2">
+                                <b><i>E</i><sub>C</sub></b> <small class="text-muted"> - Spodná hranica vodivostného pásma</small>
+                            </h5>
+                            <div class="d-inline-flex p-1">
+                                <div id="elektron" class="p-1"></div>
+                                <h5 class="m-auto">  - Majoritný elektrón</h5>
+                            </div>
+
+                            <div class="d-inline-flex p-1">
+                                <div id="zdroj_napatia" class="p-1"></div>
+                                <h5 class="m-auto">  - Zdroj napätia</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer flex-column border-top-0">
+                        <button type="button" class="btn btn-sm btn-outline-primary w-100 mx-0 mb-2" onclick="hideModal()">Mám to!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="collapse bg-dark" id="navbarHeader">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+                    <a class="col py-4 text-start" href="pouzitie.html">
+                        <h5 class="text-white my-menu-item">Použitie</h5>
+                    </a>
+                    <a class="col py-4 text-start" href="struktura_hemt.html">
+                        <h5 class="text-white my-menu-item my-menu-item-active">Štruktúra HEMT</h5>
+                    </a>
+                    <a class="col py-4 text-start" href="va_charakteristiky.html">
+                        <h5 class="text-white my-menu-item">VA charakteristiky</h5>
+                    </a>
+                    <a class="col py-4 text-start" href="integrovany_obvod.html">
+                        <h5 class="text-white my-menu-item">HEMT v logických obvodoch</h5>
+                    </a>
+                </div>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 text-center">
+                    <a class="col py-4 text-start" href="porovnanie_s_mesfet.html">
+                        <h5 class="text-white my-menu-item">Porovnanie s MESFET</h5>
+                    </a>
+                    <a class="col py-4 text-start" href="vyvoj_struktur.html">
+                        <h5 class="text-white my-menu-item">Vývoj štruktúr</h5>
+                    </a>
+                    <a class="col py-4 text-start" href="2deg_plyn.html">
+                        <h5 class="text-white my-menu-item">2DEG plyn</h5>
+                    </a>
+                    <a class="col py-4 text-start" href="faq.html">
+                        <h5 class="text-white my-menu-item">FAQ</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+            <div class="container">
+                <a href="../index.html" class="navbar-brand d-flex align-items-center">
+                    <strong>HEMT // Štruktúra HEMT</strong>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container px-1 px-md-3 px-lg-5 pb-5 my-auto">
+            <div class="row row-cols-1 px-0 px-md-3 px-lg-5 pb-5">
+                <div class="col">
+                    <h3 class="mx-auto text-center m-0"><b id="nadpis">AlGaAs/GaAs</b></h3>
+                    <div class="d-flex justify-content-center" id="struktura_hemt_container"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
+            <hr>
+            <a id="menu_element" class="d-flex justify-content-center text-white text-decoration-none text-center">
+                <span class="fs-4">Menu</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item pb-1">
+                    <a href="#" id="strukturaButton" onclick="switchToStruktura()" class="nav-link text-white active" aria-current="page">
+                        <svg class="bi" width="16" height="16"></svg>
+                        Štruktúra
+                    </a>
+                </li>
+                <li class="nav-item pb-1">
+                    <a href="#" id="detailButton" onclick="switchToDetail()" class="nav-link text-white">
+                        <svg class="bi" width="16" height="16"></svg>
+                        Detail EP diagramu
+                    </a>
+                    <hr>
+                </li>
+
+                <li class="nav-item pb-1">
+                    <a href="#" id="SH_button1" onclick="SH_button1Handler()" class="nav-link text-white" aria-current="page">
+                        <svg class="bi" width="16" height="16"></svg>
+                        Zdroj napätia
+                    </a>
+                </li>
+                <li class="nav-item pb-1">
+                    <a href="#" id="SH_button2" onclick="SH_button2Handler()" class="nav-link text-white">
+                        <svg class="bi" width="16" height="16"></svg>
+                        Pozastaviť
+                    </a>
+                </li>
+                <li class="nav-item pb-1">
+                    <a href="#" id="SH_button3" onclick="SH_button3Handler()" class="nav-link text-white active">
+                        <svg class="bi" width="16" height="16"></svg>
+                        Popis
+                    </a>
+                    <hr>
+                </li>
+
+                <li class="nav-item pb-1 mx-1 text-center">
+                    <a href="#" id="vyvoj_struktur_legendaBtn" onclick="showModal()" class="nav-link text-white border border-light">
+                        Legenda
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </main>
+    <script src="../bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../svg.js/svg.js"></script>
+    <script src="../svg.js/svg.min.js"></script>
+    <script src="../JS/global.js"></script>
+    <script src="../JS/struktura_hemt_Service.js"></script>
+    <script src="../JS/struktura_hemt_Utilities.js"></script>
+</body>
+</html>
