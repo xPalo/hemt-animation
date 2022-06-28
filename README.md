@@ -1,4 +1,4 @@
-# [hemt-animation](https://hemt-animation.herokuapp.com/).
+# [hemt-animation](https://hemt-animation.herokuapp.com/)
 
 Simple demostration of structure and function of high electron mobility transistor.
 
